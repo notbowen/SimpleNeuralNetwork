@@ -25,3 +25,11 @@ def sigmoid(x):
 @jax.jit
 def sigmoid_derivative(x):
     return jnp.exp(-x) / (1 + jnp.exp(-x)) ** 2
+
+@jax.jit
+def relu(x):
+    return jnp.maximum(x, 0)
+
+@jax.jit
+def relu_derivative(x):
+    return jnp.array(x >= 0).astype('int')
