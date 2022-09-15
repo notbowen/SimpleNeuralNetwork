@@ -14,8 +14,8 @@ from SimpleNeuralNet.Activations import sigmoid, sigmoid_derivative
 from SimpleNeuralNet.Loss_Functions import mse, mse_derivative
 
 # Test data
-inputs = jnp.array([[[0, 0]], [[0, 1]], [[1, 0]], [[1, 1]]])
-expected_outputs = jnp.array([[[0]], [[1]], [[1]], [[0]]])
+inputs = jnp.array([[0, 0], [0, 1], [1, 0], [1, 1]])
+expected_outputs = jnp.array([[0], [1], [1], [0]])
 
 # Init network
 net = Network()
