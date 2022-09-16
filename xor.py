@@ -26,9 +26,11 @@ net.add(ActivationLayer(relu, relu_derivative))
 
 # Train Network
 net.set_loss_function(sse, sse_derivative)
-net.train(inputs, expected_outputs, epochs=500, learning_rate=0.1)
+net.train(inputs, expected_outputs, epochs=1000, learning_rate=0.1)
 
 # Predict
 print("\n========================\n")
 prediction = net.predict(inputs)
-print(prediction)
+print("         Expected Predicted")
+for i in range(len(inputs)):
+    print(f"{inputs[i][0][0]} XOR {inputs[i][0][1]}: {expected_outputs[i][0]}\t {prediction[i][0][0]}")
