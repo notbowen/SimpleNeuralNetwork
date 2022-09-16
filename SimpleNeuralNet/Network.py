@@ -2,11 +2,8 @@
 # Author: Hu Bowen
 # Date: 14/9/22
 
-# Jax implementation of a Neural Network from scratch
+# Implementation of a Neural Network from scratch
 # Main network script, forward and backward propagates layers of neurons
-
-# Libraries
-import jax.numpy as jnp
 
 # Network class
 class Network:
