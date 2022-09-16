@@ -2,8 +2,11 @@
 # Author: Hu Bowen
 # Date: 14/9/22
 
-# Implementation of a Neural Network from scratch
+# Jax implementation of a Neural Network from scratch
 # Main network script, forward and backward propagates layers of neurons
+
+# Libraries
+import jax.numpy as jnp
 
 # Network class
 class Network:
@@ -33,10 +36,10 @@ class Network:
                     output = layer.forward_propagate(output)  # Pass inputs through network
                 
                 # Output loss
-                error_display += self.loss_function(expected_outputs[epoch], output)
+                error_display += self.loss_function(expected_outputs[sample], output)
 
                 # Backward propagate
-                error = self.loss_function_derivative(expected_outputs[epoch], output)
+                error = self.loss_function_derivative(expected_outputs[sample], output)
                 for layer in reversed(self.layers): 
                     error = layer.backward_propagate(error, learning_rate)
 

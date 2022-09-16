@@ -2,27 +2,34 @@
 # Author: Hu Bowen
 # Date: 14/9/22
 
-# Implementation of a Neural Network from scratch
+# Jax implementation of a Neural Network from scratch
 # Contains all activation functions and it's derivative
 
 # Libraries
-import numpy as np
+import jax
+import jax.numpy as jnp
 
 # Functions
+@jax.jit
 def tanh(x):
-    return np.tanh(x)
+    return jax.nn.tanh(x)
 
+@jax.jit
 def tanh_derivative(x):
-    return 1 - np.tanh(x) ** 2
+    return 1 - jax.nn.tanh(x) ** 2
 
+@jax.jit
 def sigmoid(x):
-    return 1 / (1 + np.exp(-x))
+    return jax.nn.sigmoid(x)
 
+@jax.jit
 def sigmoid_derivative(x):
-    return np.exp(-x) / (1 + np.exp(-x)) ** 2
+    return jnp.exp(-x) / (1 + jnp.exp(-x)) ** 2
 
+@jax.jit
 def relu(x):
-    return np.maximum(x, 0)
+    return jnp.maximum(x, 0)
 
+@jax.jit
 def relu_derivative(x):
-    return np.array(x >= 0).astype('int')
+    return jnp.array(x >= 0).astype('int')
