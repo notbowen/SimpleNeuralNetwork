@@ -31,6 +31,6 @@ net.train(inputs, expected_outputs, epochs=1000, learning_rate=0.1)
 # Predict
 print("\n========================\n")
 prediction = net.predict(inputs)
-print("         Expected Predicted")
+print("         Expected Predicted (rounded) Predicted")
 for i in range(len(inputs)):
-    print(f"{inputs[i][0][0]} XOR {inputs[i][0][1]}: {expected_outputs[i][0]}\t {prediction[i][0][0]}")
+    print(f"{inputs[i][0][0]} XOR {inputs[i][0][1]}: {expected_outputs[i][0]}\t  {round(prediction[i][0][0])}\t    (rounded) {prediction[i][0][0]}")
