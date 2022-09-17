@@ -5,6 +5,8 @@
 # Jax implementation of a Neural Network from scratch
 # Main network script, forward and backward propagates layers of neurons
 
+# TODO: Implement saving of weights and biases
+
 # Libraries
 import jax.numpy as jnp
 
