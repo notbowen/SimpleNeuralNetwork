@@ -15,21 +15,9 @@ def tanh(x):
     return jax.nn.tanh(x)
 
 @jax.jit
-def tanh_derivative(x):
-    return 1 - jax.nn.tanh(x) ** 2
-
-@jax.jit
 def sigmoid(x):
     return jax.nn.sigmoid(x)
 
 @jax.jit
-def sigmoid_derivative(x):
-    return jnp.exp(-x) / (1 + jnp.exp(-x)) ** 2
-
-@jax.jit
 def relu(x):
     return jnp.maximum(x, 0)
-
-@jax.jit
-def relu_derivative(x):
-    return jnp.array(x >= 0).astype('int')

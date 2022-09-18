@@ -10,8 +10,8 @@ import jax.numpy as jnp
 
 from SimpleNeuralNet.Network import Network
 from SimpleNeuralNet.Layers import FullyConnectedLayer, ActivationLayer
-from SimpleNeuralNet.Activations import relu, relu_derivative
-from SimpleNeuralNet.Loss_Functions import sse, sse_derivative
+from SimpleNeuralNet.Activations import relu
+from SimpleNeuralNet.Loss_Functions import sse
 
 # Test data
 inputs = jnp.array([[[0, 0]], [[0, 1]], [[1, 0]], [[1, 1]]])
@@ -20,12 +20,12 @@ expected_outputs = jnp.array([[0], [1], [1], [0]])
 # Init network
 net = Network()
 net.add(FullyConnectedLayer(2, 3))
-net.add(ActivationLayer(relu, relu_derivative))
+net.add(ActivationLayer(relu))
 net.add(FullyConnectedLayer(3, 1))
-net.add(ActivationLayer(relu, relu_derivative))
+net.add(ActivationLayer(relu))
 
 # Train Network
-net.set_loss_function(sse, sse_derivative)
+net.set_loss_function(sse)
 net.train(inputs, expected_outputs, epochs=1000, learning_rate=0.1)
 
 # Predict
@@ -33,4 +33,4 @@ print("\n========================\n")
 prediction = net.predict(inputs)
 print("         Expected Predicted (rounded) Predicted")
 for i in range(len(inputs)):
-    print(f"{inputs[i][0][0]} XOR {inputs[i][0][1]}: {expected_outputs[i][0]}\t  {round(prediction[i][0][0])}\t    (rounded) {prediction[i][0][0]}")
+    print(f"{inputs[i][0][0]} XOR {inputs[i][0][1]}: {expected_outputs[i][0]}        {round(prediction[i][0][0])}         (rounded) {prediction[i][0][0]}")

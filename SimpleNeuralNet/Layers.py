@@ -30,7 +30,6 @@ class Layer:
 # All neurons are connected to other neurons
 class FullyConnectedLayer(Layer):
     def __init__(self, input_size, output_size):
-        # TODO: Remove the 0.5 and see what happens
         self.weights = jax.random.uniform(key, (input_size, output_size)) / jnp.sqrt(input_size + output_size)
         self.bias = jax.random.uniform(key, (1, output_size)) / jnp.sqrt(input_size + output_size)
         
@@ -54,9 +53,9 @@ class FullyConnectedLayer(Layer):
 # Activation layer
 # Calculates a layer's activation
 class ActivationLayer(Layer):
-    def __init__(self, activation, activation_derivative):
+    def __init__(self, activation):
         self.activation = activation
-        self.activation_derivative = activation_derivative
+        self.activation_derivative = jax.grad(self.activation, allow_int=True)
 
     # Returns activation value
     def forward_propagate(self, input_data):

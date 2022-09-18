@@ -8,7 +8,7 @@
 # TODO: Implement saving of weights and biases
 
 # Libraries
-import jax.numpy as jnp
+import jax
 
 # Network class
 class Network:
@@ -20,9 +20,9 @@ class Network:
     def add(self, layer):
         self.layers.append(layer)
 
-    def set_loss_function(self, loss_function, loss_function_derivative):
+    def set_loss_function(self, loss_function):
         self.loss_function = loss_function
-        self.loss_function_derivative = loss_function_derivative
+        self.loss_function_derivative = jax.grad(self.loss_function, allow_int=True)
 
     # Train network
     def train(self, inputs, expected_outputs, epochs, learning_rate):
