@@ -37,6 +37,7 @@ class FullyConnectedLayer(Layer):
     def forward_propagate(self, inputs):
         self.inputs = inputs
         self.outputs = jnp.dot(self.inputs, self.weights) + self.bias  # output = (W1 A1 + W2 A2 ... + Wn An) + bias
+        #self.outputs=jnp.add(jnp.multiply(self.weights*self.inputs),self.bias)
         return self.outputs
 
     def backward_propagate(self, output_errors, learning_rate):
