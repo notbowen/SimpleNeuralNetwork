@@ -15,14 +15,12 @@ class Network:
     def __init__(self):
         self.layers = []
         self.loss_function = None
-        self.loss_function_derivative = None
 
     def add(self, layer):
         self.layers.append(layer)
 
     def set_loss_function(self, loss_function):
         self.loss_function = loss_function
-        self.loss_function_derivative = jax.grad(self.loss_function, allow_int=True)
 
     # Train network
     def train(self, inputs, expected_outputs, epochs, learning_rate):
@@ -41,7 +39,8 @@ class Network:
                 error_display += self.loss_function(expected_outputs[sample], output)
 
                 # Backward propagate
-                error = self.loss_function_derivative(expected_outputs[sample], output)
+                error = jax.vjp(self.loss_function, expected_outputs[sample], output)[0]
+                # error = self.loss_function_derivative(expected_outputs[sample], output)
                 for layer in reversed(self.layers): 
                     error = layer.backward_propagate(error, learning_rate)
 

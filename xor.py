@@ -26,7 +26,7 @@ net.add(ActivationLayer(relu))
 
 # Train Network
 net.set_loss_function(sse)
-net.train(inputs, expected_outputs, epochs=1000, learning_rate=0.1)
+net.train(inputs, expected_outputs, epochs=1000, learning_rate=0.001)
 
 # Predict
 print("\n========================\n")

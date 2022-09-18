@@ -55,7 +55,6 @@ class FullyConnectedLayer(Layer):
 class ActivationLayer(Layer):
     def __init__(self, activation):
         self.activation = activation
-        self.activation_derivative = jax.grad(self.activation, allow_int=True)
 
     # Returns activation value
     def forward_propagate(self, input_data):
@@ -66,4 +65,5 @@ class ActivationLayer(Layer):
 
     # Returns change in input for a given output
     def backward_propagate(self, output_error, learning_rate):
-        return self.activation_derivative(self.inputs) * output_error
+        # return self.activation_derivative(self.inputs) * output_error
+        return jax.vjp(self.activation, self.inputs)[0] * output_error
